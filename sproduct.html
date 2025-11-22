@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Product Details Page Specific Styles */
+        #page-header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/banner/b1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #prodetails {
+            display: flex;
+            margin-top: 20px;
+            padding: 40px 0;
+        }
+
+        #prodetails .single-pro-image {
+            width: 40%;
+            margin-right: 50px;
+        }
+
+        .small-img-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .small-img-col {
+            flex-basis: 24%;
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .small-img-col img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            transition: 0.3s ease;
+        }
+
+        .small-img-col:hover img {
+            transform: scale(1.05);
+        }
+
+        #main-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #prodetails .single-pro-details {
+            width: 50%;
+            padding-top: 30px;
+        }
+
+        #prodetails .single-pro-details h4 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        #prodetails .single-pro-details h2 {
+            font-size: 2.2rem;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        #prodetails .single-pro-details select {
+            display: block;
+            padding: 8px 12px;
+            margin-bottom: 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            width: 150px;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        #prodetails .single-pro-details input {
+            width: 60px;
+            height: 40px;
+            padding-left: 10px;
+            font-size: 1rem;
+            margin-right: 10px;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+        }
+
+        #prodetails .single-pro-details button {
+            background-color: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #prodetails .single-pro-details button:hover {
+            background-color: #1e40af;
+        }
+
+        #prodetails .single-pro-details span {
+            line-height: 1.8;
+            color: #4b5563;
+            margin: 15px 0;
+            display: block;
+        }
+
+        .product-meta {
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid #e1e1e1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .product-meta span {
+            display: block;
+            margin: 8px 0;
+            color: #4b5563;
+        }
+
+        .product-meta a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .product-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* Product Description */
+        #product-description {
+            padding: 50px 0;
+            border-top: 1px solid #e1e1e1;
+        }
+
+        #product-description .description-nav {
+            display: flex;
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 30px;
+        }
+
+        #product-description .description-nav button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #product-description .description-nav button.active {
+            color: #2563eb;
+        }
+
+        #product-description .description-nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2563eb;
+        }
+
+        #product-description .description-content {
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        /* Related Products */
+        #product1 {
+            padding: 50px 0;
+        }
+
+        #product1 h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1f2937;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            #prodetails {
+                flex-direction: column;
+            }
+
+            #prodetails .single-pro-image,
+            #prodetails .single-pro-details {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            #prodetails .single-pro-details {
+                padding-top: 30px;
+            }
+
+            #main-img {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #main-img {
+                height: 300px;
+            }
+
+            #prodetails .single-pro-details h2 {
+                font-size: 1.8rem;
+            }
+
+            .small-img-col img {
+                height: 80px;
+            }
+
+            #prodetails .single-pro-details button {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <section id="header">
+        <a href="index.html" class="logo">Shop<span>Ease</span></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fas fa-shopping-bag"></i></a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fas fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section id="page-header">
+        <h2>#stayhome</h2>
+        <p>Save more with coupons & up to 70% off!</p>
+    </section>
+
+    <!-- Product Details -->
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="img/products/f1.jpg" width="100%" id="MainImg" alt="Product Image">
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="img/products/f1.jpg" width="100%" class="small-img" alt="Product Thumbnail 1">
+                </div>
+                <div class="small-img-col">
+                    <img src="img/products/f2.jpg" width="100%" class="small-img" alt="Product Thumbnail 2">
+                </div>
+                <div class="small-img-col">
+                    <img src="img/products/f3.jpg" width="100%" class="small-img" alt="Product Thumbnail 3">
+                </div>
+                <div class="small-img-col">
+                    <img src="img/products/f4.jpg" width="100%" class="small-img" alt="Product Thumbnail 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h6>Home / T-Shirt</h6>
+            <h4>Men's Fashion T-Shirt</h4>
+            <h2>$139.00</h2>
+            <select>
+                <option>Select Size</option>
+                <option>XL</option>
+                <option>XXL</option>
+                <option>Small</option>
+                <option>Large</option>
+            </select>
+            <div style="display: flex; align-items: center; margin: 20px 0;">
+                <input type="number" value="1" min="1">
+                <button class="normal">Add To Cart</button>
+                <button class="normal" style="margin-left: 10px; background-color: #f4f4f4; color: #333;">Add to Wishlist</button>
+            </div>
+            <h4>Product Details</h4>
+            <span>
+                The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription 
+                service to be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.
+            </span>
+            
+            <div class="product-meta">
+                <span><strong>SKU:</strong> 001</span>
+                <span><strong>Category:</strong> T-Shirt, Men, Top</span>
+                <span><strong>Tags:</strong> Modern, Design, Cotton</span>
+            </div>
+            
+            <div class="share">
+                <h4>Share:</h4>
+                <div class="social-links" style="margin-top: 10px;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Description -->
+    <section id="product-description" class="section-p1">
+        <div class="description-nav">
+            <button class="active" data-tab="description">Description</button>
+            <button data-tab="additional">Additional Information</button>
+            <button data-tab="reviews">Reviews (0)</button>
+        </div>
+        <div class="description-content">
+            <div id="description" class="tab-content active">
+                <p>This is a premium quality t-shirt made from 100% organic cotton. The fabric is soft, breathable, and comfortable for all-day wear. The design features a modern and minimalist aesthetic that pairs well with any casual outfit.</p>
+                <p>Care Instructions: Machine wash cold with like colors, tumble dry low, do not bleach, iron on reverse side, do not dry clean.</p>
+            </div>
+            <div id="additional" class="tab-content" style="display: none;">
+                <table>
+                    <tr>
+                        <td><strong>Material</strong></td>
+                        <td>100% Organic Cotton</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fit</strong></td>
+                        <td>Regular Fit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Neck</strong></td>
+                        <td>Round Neck</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sleeve</strong></td>
+                        <td>Short Sleeve</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="reviews" class="tab-content" style="display: none;">
+                <p>No reviews yet</p>
+                <button class="normal" style="margin-top: 15px;">Write a Review</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section id="product1" class="section-p1">
+        <h2>Related Products</h2>
+        <div class="pro-container">
+            <div class="product-grid">
+                <!-- Related Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="img/products/f2.jpg" alt="Related Product 1">
+                        <span class="product-tag">New</span>
+                        <div class="product-actions">
+                            <button title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button title="Quick View"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Shirt</span>
+                        <h3 class="product-title">Classic Fit Cotton Shirt</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">$59.00</span>
+                                <span class="original-price">$79.00</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="img/products/f3.jpg" alt="Related Product 2">
+                        <div class="product-actions">
+                            <button title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button title="Quick View"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Pants</span>
+                        <h3 class="product-title">Casual Slim Fit Pants</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">$65.00</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="img/products/f4.jpg" alt="Related Product 3">
+                        <span class="product-tag sale">-20%</span>
+                        <div class="product-actions">
+                            <button title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button title="Quick View"><i class="far fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Shoes</span>
+                        <h3 class="product-title">Classic Sneakers</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <div>
+                                <span class="price">$89.00</span>
+                                <span class="original-price">$110.00</span>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+        </div>
+        <div class="newsletter-form">
+            <input type="text" placeholder="Your email address">
+            <button class="button">Sign Up</button>
+        </div>
+    </section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Newsletter Section -->
+        <div class="footer-newsletter">
+            <div class="newsletter-content">
+                <h3>Subscribe to our newsletter</h3>
+                <p>Get the latest updates on new products and upcoming sales</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-subscribe">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div class="footer-content">
+            <!-- About Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">ShopEase</h4>
+                <p class="footer-about">Your one-stop destination for premium quality products with exceptional customer service and fast shipping.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Service Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Customer Service</h4>
+                <ul class="footer-links">
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Contact Us</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 E-commerce St, San Francisco, CA 94103</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@shopease.com">info@shopease.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-apple-pay"></i>
+                <i class="fab fa-google-pay"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ShopEase. All rights reserved.</p>
+            </div>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+                <span>•</span>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Footer Styles */
+    .footer {
+        background-color: #1a1a1a;
+        color: #ffffff;
+        padding: 4rem 0 0;
+        font-family: 'Inter', sans-serif;
+        margin-top: 4rem;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    /* Newsletter Section */
+    .footer-newsletter {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        border-radius: 12px;
+        padding: 2.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 4rem;
+        gap: 1.5rem;
+    }
+
+    .newsletter-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: white;
+    }
+
+    .newsletter-content p {
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+        max-width: 400px;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 0.875rem 1.25rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-form input:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-subscribe {
+        background-color: #111827;
+        color: white;
+        border: none;
+        padding: 0 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .btn-subscribe:hover {
+        background-color: #1f2937;
+        transform: translateY(-2px);
+    }
+
+    /* Footer Content */
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer-column {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        position: relative;
+        padding-bottom: 0.75rem;
+    }
+
+    .footer-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #3b82f6;
+    }
+
+    .footer-about {
+        color: #9ca3af;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: inline-block;
+        position: relative;
+    }
+
+    .footer-links a:hover {
+        color: #ffffff;
+        transform: translateX(5px);
+    }
+
+    .footer-links a::before {
+        content: '→';
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover::before {
+        opacity: 1;
+        left: -15px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .contact-info li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        color: #9ca3af;
+    }
+
+    .contact-info i {
+        margin-right: 0.75rem;
+        color: #3b82f6;
+        margin-top: 0.25rem;
+    }
+
+    .contact-info a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+        color: #ffffff;
+    }
+
+    /* Social Links */
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+        background-color: #3b82f6;
+        transform: translateY(-3px);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .payment-methods {
+        display: flex;
+        gap: 1rem;
+        font-size: 1.5rem;
+        color: #9ca3af;
+    }
+
+    .copyright {
+        color: #9ca3af;
+        font-size: 0.875rem;
+    }
+
+    .legal-links {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .legal-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+    }
+
+    .legal-links a:hover {
+        color: #ffffff;
+    }
+
+    .legal-links span {
+        color: #4b5563;
+        font-size: 0.75rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+        .footer-newsletter {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+
+        .newsletter-form {
+            width: 100%;
+        }
+
+        .footer-content {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            padding-top: 3rem;
+        }
+
+        .footer-newsletter {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-content {
+            text-align: center;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .btn-subscribe {
+            width: 100%;
+            padding: 0.75rem;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .payment-methods {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .footer-newsletter {
+            padding: 1.25rem;
+        }
+
+        .newsletter-content h3 {
+            font-size: 1.25rem;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links a:hover {
+            transform: none;
+        }
+
+        .footer-links a::before {
+            display: none;
+        }
+    }
+</style>
+
+    <script src="script.js"></script>
+    <script>
+        // Image Gallery
+        const MainImg = document.getElementById('MainImg');
+        const smallImg = document.querySelectorAll('.small-img');
+
+        smallImg.forEach(img => {
+            img.addEventListener('click', (e) => {
+                MainImg.src = e.target.src;
+            });
+        });
+
+        // Tabs
+        const tabButtons = document.querySelectorAll('.description-nav button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.style.display = 'none');
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).style.display = 'block';
+            });
+        });
+
+        // Add to cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const productPrice = productCard.querySelector('.price').textContent;
+                    
+                    // Here you would typically add the product to the cart
+                    // For now, we'll just show a success message
+                    alert(`${productName} has been added to your cart!`);
+                });
+            });
+
+            // Toggle mobile menu
+            const bar = document.getElementById('bar');
+            const close = document.getElementById('close');
+            const nav = document.getElementById('navbar');
+
+            if (bar) {
+                bar.addEventListener('click', () => {
+                    nav.classList.add('active');
+                });
+            }
+
+            if (close) {
+                close.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

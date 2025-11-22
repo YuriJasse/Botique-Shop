@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - ShopEase</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="modern.css">
+    <style>
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb li {
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: #e0e7ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin-left: 1rem;
+            color: #a5b4fc;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 5rem 0;
+            background: #f9fafb;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .blog-meta i {
+            margin-right: 0.5rem;
+            color: #4f46e5;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: #4f46e5;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #4338ca;
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+            gap: 0.75rem;
+        }
+
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: #4b5563;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover {
+            background: #f3f4f6;
+            color: #4f46e5;
+        }
+
+        .page-link.active {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .page-link.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.25rem;
+            }
+
+            .blog-section {
+                padding: 3rem 0;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">Shop<span>Ease</span></a>
+                <nav>
+                    <ul id="navbar">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html" class="active">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a></li>
+                        <li><a href="login.html" class="btn btn-outline btn-sm">Login</a></li>
+                        <li><a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile">
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a>
+                    <i id="bar" class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Blog</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="blog-container">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+                <p>Discover the latest trends, tips, and insights in our blog</p>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b1.jpg" alt="The Cotton-Jersey Zip-Up Hoodie">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 15, 2023</span>
+                            <span><i class="far fa-comment"></i> 12 Comments</span>
+                        </div>
+                        <h3 class="blog-title">The Cotton-Jersey Zip-Up Hoodie</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b2.jpg" alt="How to Style a Quiff">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 12, 2023</span>
+                            <span><i class="far fa-comment"></i> 8 Comments</span>
+                        </div>
+                        <h3 class="blog-title">How to Style a Quiff</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b3.jpg" alt="Must-Have Skater Girl Items">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 8, 2023</span>
+                            <span><i class="far fa-comment"></i> 15 Comments</span>
+                        </div>
+                        <h3 class="blog-title">Must-Have Skater Girl Items</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b4.jpg" alt="Runway-Inspired Trends">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> June 1, 2023</span>
+                            <span><i class="far fa-comment"></i> 22 Comments</span>
+                        </div>
+                        <h3 class="blog-title">Runway-Inspired Trends</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b5.jpg" alt="AW20 Menswear Trends">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 25, 2023</span>
+                            <span><i class="far fa-comment"></i> 10 Comments</span>
+                        </div>
+                        <h3 class="blog-title">AW20 Menswear Trends</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="img/blog/b6.jpg" alt="Summer Essentials">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> May 18, 2023</span>
+                            <span><i class="far fa-comment"></i> 7 Comments</span>
+                        </div>
+                        <h3 class="blog-title">Summer Essentials</h3>
+                        <p class="blog-excerpt">Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard...</p>
+                        <a href="#" class="read-more">READ MORE <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Sign Up For Newsletters</h2>
+                <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="btn-subscribe">Sign Up</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">Shop<span>Ease</span></a>
+                    <p>Your one-stop shop for all your needs. We offer quality products at competitive prices with excellent customer service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="login.html">My Account</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="contact.html">Help & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 ShopEase. All rights reserved.
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="modern.js"></script>
+    <script>
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Mobile menu toggle
+            const bar = document.getElementById('bar');
+            const nav = document.getElementById('navbar');
+            
+            if (bar) {
+                bar.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    nav.classList.toggle('active');
+                    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#navbar') && !e.target.matches('#bar')) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Initialize animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .slide-in-bottom');
+                
+                const isInViewport = function(element) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+                        rect.bottom >= 0
+                    );
+                };
+
+                elements.forEach(element => {
+                    if (isInViewport(element) && !element.classList.contains('animate')) {
+                        element.classList.add('animate');
+                    }
+                });
+            };
+
+            // Run once on load
+            animateOnScroll();
+
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

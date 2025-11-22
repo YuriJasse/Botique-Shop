@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="modern.css">
+    <style>
+        /* Login Page Specific Styles */
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .auth-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+        
+        .auth-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .auth-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+        }
+        
+        .auth-header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-form label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background-color: white;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            font-size: 0.875rem;
+            color: #3b82f6;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-login:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #94a3b8;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .divider span {
+            padding: 0 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #334155;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-social:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+        
+        .auth-footer a {
+            color: #3b82f6;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .auth-image {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        .auth-image-content {
+            position: relative;
+            z-index: 1;
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .auth-image h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .auth-image p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-outline-light {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .auth-card {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 2rem auto;
+            }
+            
+            .auth-image {
+                display: none;
+            }
+            
+            .auth-content {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="auth-page">
+    <!-- Header -->
+    <header id="header" class="bg-white shadow-sm">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">Shop<span>Ease</span></a>
+                <nav>
+                    <ul id="navbar">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a></li>
+                        <li><a href="login.html" class="active">Login</a></li>
+                        <li><a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile">
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a>
+                    <i id="bar" class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Login Form -->
+            <div class="auth-content animate-fadeInUp">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Login to access your account and continue shopping</p>
+                </div>
+                
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <label for="password">Password</label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" id="togglePassword">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; align-items: center; margin: 1.5rem 0;">
+                        <input type="checkbox" id="remember" class="custom-checkbox" style="margin-right: 0.75rem;">
+                        <label for="remember" style="margin: 0; font-size: 0.875rem; color: #334155;">Remember me</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">Sign In</button>
+                    
+                    <div class="divider">
+                        <span>or continue with</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button type="button" class="btn-social">
+                            <i class="fab fa-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="btn-social">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="auth-footer">
+                    Don't have an account? <a href="signup.html">Sign up</a>
+                </div>
+            </div>
+            
+            <!-- Right Side Image -->
+            <div class="auth-image">
+                <div class="auth-image-content">
+                    <h2>New to ShopEase?</h2>
+                    <p>Create an account and discover amazing products with exclusive member benefits and rewards.</p>
+                    <a href="signup.html" class="btn-outline-light">
+                        Create Account
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">Shop<span>Ease</span></a>
+                    <p>Your one-stop destination for all your shopping needs. We offer high-quality products with the best customer service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Shopping St, Retail District, City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@shopease.com</li>
+                    </ul>
+                    <div class="payment-methods">
+                        <img src="img/pay/pay.png" alt="Payment Methods" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEase. All Rights Reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="terms.html">Terms of Service</a>
+                    <span>|</span>
+                    <a href="cookies.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="modern.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('bar');
+            const mobileMenu = document.getElementById('navbar');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                    
+                    // Toggle between hamburger and close icon
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenuButton.classList.remove('fa-bars');
+                        mobileMenuButton.classList.add('fa-times');
+                    } else {
+                        mobileMenuButton.classList.remove('fa-times');
+                        mobileMenuButton.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close mobile menu when clicking on a link
+                const navLinks = document.querySelectorAll('#navbar a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                        mobileMenuButton.classList.remove('fa-times');
+                        mobileMenuButton.classList.add('fa-bars');
+                    });
+                });
+            }
+
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            if (togglePassword && password) {
+                togglePassword.addEventListener('click', function() {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('fa-eye');
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            }
+
+            // Form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Add your login logic here
+                    console.log('Login form submitted');
+                    // Example: Redirect to account page after successful login
+                    // window.location.href = 'account.html';
+                });
+            }
+            
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+                
+                backToTop.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

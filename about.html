@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="modern.css">
+    <style>
+        /* Navigation Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4f46e5;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+            border: 1px solid #4f46e5;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            border-color: #4338ca;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+        }
+
+        .btn-outline:hover {
+            background: #f5f3ff;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .cart-icon i {
+            font-size: 1.25rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hamburger, .close-menu {
+            background: none;
+            border: none;
+            color: #4b5563;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5rem 2rem 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 0;
+                width: 100%;
+                border-bottom: 1px solid #f3f4f6;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hamburger, .close-menu {
+                display: block;
+            }
+
+            .close-menu {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* About Page Specific Styles */
+        .page-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #fff;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.1;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .about-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-content h2 {
+            font-size: 2.25rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: #eef2ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: #4f46e5;
+            font-size: 1.75rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .app-section {
+            background: #f9fafb;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .app-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-content h2 {
+            font-size: 2.25rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-content p {
+            color: #4b5563;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .stats-section {
+            background: #4f46e5;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .team-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 2.25rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .team-section p {
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .member-image {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .member-info h4 {
+            font-size: 1.25rem;
+            color: #1f2937;
+            margin: 0 0 0.25rem;
+        }
+
+        .member-info p {
+            color: #6b7280;
+            margin: 0 0 1rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: #9ca3af;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4f46e5;
+        }
+
+        .newsletter-section {
+            background: #f3f4f6;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-container h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-container p {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #4338ca;
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-header {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .about-section, .team-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input, .newsletter-form button {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            .newsletter-form button {
+                padding: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo">Shop<span>Ease</span></a>
+                <nav>
+                    <ul id="navbar">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a></li>
+                        <li><a href="login.html" class="btn btn-outline btn-sm">Login</a></li>
+                        <li><a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile">
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a>
+                    <i id="bar" class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-header">
+        <h1>Our Story</h1>
+        <p>Discover the passion and dedication behind ShopEase</p>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Our Team">
+            </div>
+            <div class="about-content">
+                <h2>Who We Are</h2>
+                <p>Welcome to ShopEase, your premier destination for all things fashion and lifestyle. We're dedicated to bringing you the very best products, with a strong focus on quality, customer service, and unique finds that you won't find anywhere else.</p>
+                <p>Founded in 2020, ShopEase began as a small startup with a big dream: to make online shopping simple, enjoyable, and accessible to everyone. What started as a passion project has grown into a thriving e-commerce platform serving thousands of satisfied customers worldwide.</p>
+                <p>At ShopEase, we believe that shopping should be more than just a transaction—it should be an experience. That's why we've carefully curated our collection to include only the finest products from trusted brands and emerging designers.</p>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Fast & Free Shipping</h3>
+                <p>Free delivery on all orders over $50 with our express shipping options</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-undo"></i>
+                </div>
+                <h3>Hassle-Free Returns</h3>
+                <p>30-day return policy with free return shipping for a stress-free experience</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Secure Checkout</h3>
+                <p>Your payment information is protected with bank-level security</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated support team is always here to help you with any questions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>10K+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Brands Available</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Satisfaction Guaranteed</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Customer Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2>Meet Our Team</h2>
+        <p>Passionate individuals dedicated to bringing you the best shopping experience</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Team Member">
+                </div>
+                <div class="member-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>CEO & Founder</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
+                </div>
+                <div class="member-info">
+                    <h4>Michael Chen</h4>
+                    <p>Head of Operations</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member">
+                </div>
+                <div class="member-info">
+                    <h4>Emily Rodriguez</h4>
+                    <p>Customer Experience</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Showcase -->
+    <section class="app-section">
+        <div class="app-content">
+            <h2>Shop On The Go</h2>
+            <p>Download our mobile app for exclusive app-only deals and a seamless shopping experience wherever you are.</p>
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source src="https://player.vimeo.com/external/449759758.sd.mp4?s=d5f3da46ddc17aa69a7de84f82e13631d925a6bd&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="#" class="btn btn-primary" style="margin-right: 1rem;"><i class="fab fa-apple"></i> App Store</a>
+                <a href="#" class="btn btn-outline"><i class="fab fa-google-play"></i> Google Play</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2>Join Our Community</h2>
+            <p>Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and special events.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">Shop<span>Ease</span></a>
+                    <p>Your one-stop shop for all your needs. We offer quality products at competitive prices with excellent customer service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="login.html">My Account</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="contact.html">Help & Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 ShopEase. All rights reserved.
+                </div>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="modern.js"></script>
+    <script>
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            // Mobile menu toggle
+            const bar = document.getElementById('bar');
+            const nav = document.getElementById('navbar');
+            
+            if (bar) {
+                bar.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    nav.classList.toggle('active');
+                    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#navbar') && !e.target.matches('#bar')) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Initialize animations
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .slide-in-bottom');
+                
+                const isInViewport = function(element) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+                        rect.bottom >= 0
+                    );
+                };
+
+                elements.forEach(element => {
+                    if (isInViewport(element) && !element.classList.contains('animate')) {
+                        element.classList.add('animate');
+                    }
+                });
+            };
+
+            // Run once on load
+            animateOnScroll();
+
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* Animation for elements */
+        .feature-card,
+        .team-member,
+        .stat-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        /* Preload animations for elements in viewport on load */
+        .feature-card.in-view,
+        .team-member.in-view,
+        .stat-item.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .newsletter-content {
+            text-align: center;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+    </style>
+    
+    <script>
+        // Check for elements in viewport on load and scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.feature-card, .team-member, .stat-item');
+            
+            const checkIfInView = () => {
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('in-view');
+                    }
+                });
+            };
+            
+            // Check on load
+            checkIfInView();
+            
+            // Check on scroll with debounce for better performance
+            let isScrolling;
+            window.addEventListener('scroll', () => {
+                window.clearTimeout(isScrolling);
+                isScrolling = setTimeout(checkIfInView, 66); // ~15fps
+            }, false);
+        });
+    </script>
+        }
+
+        .btn-subscribe {
+            width: 100%;
+            padding: 0.75rem;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .payment-methods {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .footer-newsletter {
+            padding: 1.25rem;
+        }
+
+        .newsletter-content h3 {
+            font-size: 1.25rem;
+        }
+
+        .footer-title {
+            font-size: 1.125rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links a:hover {
+            transform: none;
+        }
+
+        .footer-links a::before {
+            display: none;
+        }
+    }
+</style>
+
+    <script src="script.js"></script>
+</body>
+</html>

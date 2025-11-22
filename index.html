@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="modern.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">Shop<span>Ease</span></a>
+                <nav>
+                    <ul id="navbar">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a></li>
+                        <li><a href="login.html" class="btn btn-outline btn-sm">Login</a></li>
+                        <li><a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile">
+                    <a href="cart.html"><i class="fas fa-shopping-bag"></i> <span class="cart-count">0</span></a>
+                    <i id="bar" class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h4>New Season Arrivals</h4>
+                <h1>Discover Your Perfect Style</h1>
+                <p>Explore our curated collection of premium products designed to elevate your everyday life. Quality, style, and comfort in one place.</p>
+                <div class="hero-buttons">
+                    <a href="shop.html" class="btn btn-primary btn-lg">Shop Now</a>
+                    <a href="#featured-products" class="btn btn-outline btn-lg">View Collection</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Us</h2>
+                <p class="section-subtitle">We provide the best shopping experience with our premium services</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Free Shipping</h3>
+                    <p>Free delivery on all orders over $50</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>30-day return policy for all products</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure Payment</h3>
+                    <p>100% secure payment processing</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Browse through our wide range of categories to find what you're looking for</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="img/banner/b1.jpg" alt="Men's Fashion" class="category-img">
+                    <div class="category-overlay">
+                        <h3>Men's Fashion</h3>
+                        <p>Trendy and comfortable clothing for men</p>
+                        <a href="shop.html?category=men" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="img/banner/b2.jpg" alt="Women's Fashion" class="category-img">
+                    <div class="category-overlay">
+                        <h3>Women's Fashion</h3>
+                        <p>Elegant and stylish outfits for women</p>
+                        <a href="shop.html?category=women" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="img/banner/b4.jpg" alt="Accessories" class="category-img">
+                    <div class="category-overlay">
+                        <h3>Accessories</h3>
+                        <p>Complete your look with our accessories</p>
+                        <a href="shop.html?category=accessories" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured-products" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-subtitle">Handpicked selection of premium products</p>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <span class="product-badge">New</span>
+                        <img src="img/products/f1.jpg" alt="Classic Fit Cotton Shirt" class="product-img">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button class="action-btn" title="Quick View"><i class="far fa-eye"></i></button>
+                            <button class="action-btn" title="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">T-Shirt</span>
+                        <h3 class="product-title">Classic Fit Cotton Shirt</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(24)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$45.00</span>
+                            <span class="original-price">$65.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <span class="product-badge sale">-30%</span>
+                        <img src="img/products/f2.jpg" alt="Premium Running Shoes" class="product-img">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button class="action-btn" title="Quick View"><i class="far fa-eye"></i></button>
+                            <button class="action-btn" title="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Shoes</span>
+                        <h3 class="product-title">Premium Running Shoes</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(36)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$89.00</span>
+                            <span class="original-price">$120.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="img/products/f3.jpg" alt="Leather Wallet" class="product-img">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button class="action-btn" title="Quick View"><i class="far fa-eye"></i></button>
+                            <button class="action-btn" title="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Accessories</span>
+                        <h3 class="product-title">Leather Wallet</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(18)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$35.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <span class="product-badge">New</span>
+                        <img src="img/products/f4.jpg" alt="Wireless Headphones" class="product-img">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                            <button class="action-btn" title="Quick View"><i class="far fa-eye"></i></button>
+                            <button class="action-btn" title="Add to Cart"><i class="fas fa-shopping-cart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Wireless Headphones</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(42)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$129.00</span>
+                            <span class="original-price">$159.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="shop.html" class="btn btn-primary btn-lg">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Don't just take our word for it - hear from our satisfied customers</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "I've been shopping here for years and I'm always impressed with the quality and customer service. Highly recommended!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="img/people/1.png" alt="Sarah Johnson" class="testimonial-avatar">
+                        <div>
+                            <div class="testimonial-name">Sarah Johnson</div>
+                            <div class="testimonial-role">Loyal Customer</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More testimonials would go here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products and upcoming sales</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">Shop<span>Ease</span></a>
+                    <p>Your one-stop destination for all your shopping needs. We offer high-quality products with the best customer service.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="blog.html">Our Blog</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="sitemap.html">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Refunds</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Shopping St, Retail District, City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@shopease.com</li>
+                    </ul>
+                    <div class="payment-methods">
+                        <img src="img/pay/pay.png" alt="Payment Methods" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopEase. All Rights Reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="terms.html">Terms of Service</a>
+                    <span>|</span>
+                    <a href="cookies.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="modern.js"></script>
+    <script>
+        // Mobile menu toggle for Font Awesome icons
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('bar');
+            const mobileMenu = document.getElementById('navbar');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    mobileMenu.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                    
+                    // Toggle between hamburger and close icon
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenuButton.classList.remove('fa-bars');
+                        mobileMenuButton.classList.add('fa-times');
+                    } else {
+                        mobileMenuButton.classList.remove('fa-times');
+                        mobileMenuButton.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close mobile menu when clicking on a link
+                const navLinks = document.querySelectorAll('#navbar a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                        mobileMenuButton.classList.remove('fa-times');
+                        mobileMenuButton.classList.add('fa-bars');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
